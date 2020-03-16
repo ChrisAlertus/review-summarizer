@@ -249,3 +249,10 @@ def load_artefacts(path):
     with open(path + "/y_tokenizer.pkl", "rb") as handle:
         y_tokenizer = pickle.load(handle)
     return encoder_model, decoder_model, x_tokenizer, y_tokenizer
+
+
+def get_word_indexes(x_tokenizer, y_tokenizer):
+    reverse_target_word_index = y_tokenizer.index_word
+    reverse_source_word_index = x_tokenizer.index_word
+    target_word_index = y_tokenizer.word_index
+    return reverse_target_word_index, reverse_source_word_index, target_word_index
