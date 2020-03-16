@@ -184,7 +184,8 @@ def text_cleaner(text,num):
     return (" ".join(long_words)).strip()
 
 
-def decode_sequence(input_seq, encoder_model,
+def decode_sequence(input_seq,
+                    encoder_model,
                     decoder_model,
                     target_word_index,
                     reverse_target_word_index,
@@ -256,3 +257,14 @@ def get_word_indexes(x_tokenizer, y_tokenizer):
     reverse_source_word_index = x_tokenizer.index_word
     target_word_index = y_tokenizer.word_index
     return reverse_target_word_index, reverse_source_word_index, target_word_index
+
+
+def process_review(review, max_text_len, x_tokenizer, encoder_model, decoder_model):
+    review_text_cleaned = text_cleaner(review, 0)
+    if len(review_text_cleaned.split(" ")) >= max_text_len:
+        review_text_cleaned = review_text_cleaned.split(" ")[:max_text_len]
+        review_text_cleaned = "".join([i + " " for i in review_text_cleaned])
+    review_text_cleaned = np.array([review_text_cleaned])
+    review_text_tokenized = x_tokenizer.texts_to_sequences(review_text_cleaned)
+    review_text_tokenized = pad_sequences(review_text_tokenized, maxlen=max_text_len, padding='post')
+    return review_text_tokenized
