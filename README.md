@@ -1,21 +1,24 @@
 # review-summarizer
 
-how to start the api locally:
+## how to start the api locally:
 - pull changes
 - create new conda environment and pip install requirements.txt inside summarization_service module
 ````bash
 # note python must be at most 3.6 or some packages wont install
 conda create -n nlp_summ python=3.6
+conda activate nlp_summ
+pip install -r summarization_service/requirements.txt
 ````
 
 - once installed start the API by running this command: python api.py
 - the endpoint that you will have to use to send POST requests is : 127.0.0.1:5000/summarize
 
-# How to run the ui locally
+## how to run the ui locally
 - pull changes
 - make a ui virtual env for the ui dependencies
 ````bash
-virtual env appui 
+virtualenv appui 
+source appui/bin/activate
 pip install -r ui/requirements.txt
 ````
 - run the streamlit app
