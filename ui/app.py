@@ -1,10 +1,11 @@
+import json
 import numpy as np 
 import pandas as pd 
 import requests 
 import streamlit as st 
   
 # defining the api-endpoint  
-API_ENDPOINT = '<mlhost>'
+API_ENDPOINT = 'http://127.0.0.1:5000/summarize'
 
 st.title('AISC NLP and ML Ops workshop March 2020')
 st.write('While the rest of the world is holed up fleeing the spread of the'
@@ -24,30 +25,12 @@ review = st.text_input(label='your review here', value='')
 
 if st.button('Add review'):
 
-  #r = requests.post(url = API_ENDPOINT, data = review) 
-  reviews.append((review, 'other'))
+  r = requests.post(url = API_ENDPOINT, json = {'review':review}) 
+  response = r.json()
+  reviews.append((review, response['summary']))
 
   formatted_reviews = ''
   for rev, summ in reviews:
     formatted_reviews = f'\nManual review said: {rev:>40}'
     formatted_reviews += f'\n\nSummary (ML generated) said: {summ:>40}\n'
     st.write(formatted_reviews)
-
-
-# review_id = 0
-# reviews = []
-# review = None
-
-# default = ''
-
-#   # review added to data frame : clear the review box when button clicked
-#   # send post request
-#   # disiplay summary
-# #if st.button('Add a review', key='write'):
-# if st.button('reset box', key='reset'):
-#   review = st.text_input(label='your review here', value=default,
-#     key=review_id)
-#   reviews.append(review)
-#   print(review)
-#   reviews.append(review)
-#   default = ' '

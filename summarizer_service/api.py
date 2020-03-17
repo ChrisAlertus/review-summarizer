@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify, make_response
 from helpers import load_artefacts, get_word_indexes, process_review, decode_sequence
+import os
 
 app = Flask(__name__)
 
 max_text_len = 30
 max_summary_len = 8
-encoder_model, decoder_model, x_tokenizer, y_tokenizer = load_artefacts("artefacts")
+curr_path = os.path.dirname(os.path.abspath(__file__)) + '/'
+encoder_model, decoder_model, x_tokenizer, y_tokenizer = load_artefacts(f'{curr_path}artefacts')
 reverse_target_word_index, reverse_source_word_index, target_word_index = get_word_indexes(x_tokenizer, y_tokenizer)
 
 
