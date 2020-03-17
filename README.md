@@ -21,7 +21,7 @@ pip install -r ui/requirements.txt
 - run the streamlit app
 ````
 streamlit run ui/app.py
-```
+````
 - it should automatically open on port 8501 and open in your default web browser
 - then enter a reivew in the text box and hit the button "add review" and the model 
   will summarize what you typed and output its abstractive summary for comparison
