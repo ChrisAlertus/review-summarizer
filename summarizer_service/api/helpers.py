@@ -243,13 +243,7 @@ def seq2text(input_seq, reverse_source_word_index):
 
 
 def load_artefacts(path):
-    encoder_model = load_model(path + "/encoder.h5")
-    decoder_model = load_model(path + "/decoder.h5", custom_objects={'AttentionLayer': AttentionLayer})
-    with open(path + "/tokenizer.pkl", "rb") as handle:
-        x_tokenizer = pickle.load(handle)
-    with open(path + "/y_tokenizer.pkl", "rb") as handle:
-        y_tokenizer = pickle.load(handle)
-    return encoder_model, decoder_model, x_tokenizer, y_tokenizer
+    pass
 
 
 def get_word_indexes(x_tokenizer, y_tokenizer):
