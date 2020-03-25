@@ -44,7 +44,7 @@ RUN echo "source activate summarizer" >> .bashrc
 
 # Pip install api requirements into the conda env
 RUN /bin/bash -c "source activate summarizer" && \
-	pip install --upgrade pip setuptools && \
+	pip install --ignore-installed --upgrade pip setuptools && \
 	pip install -r /root/requirements.txt --no-cache-dir
 
 # Make our start script executable
